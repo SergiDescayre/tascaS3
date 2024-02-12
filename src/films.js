@@ -30,7 +30,6 @@ function orderAlphabetically(array) {
           result.push(film)
       }
   })
-  console.log(result)
   return result
 }
 
@@ -41,8 +40,19 @@ function orderByYear(array) {
           title : movie.title,
           year : movie.year
       }
-  }).sort((a,b) => a.title - b.title)
-  .sort((a,b) => a.year - b.year)
+  }).sort((a,b) => {
+    if (a.title < b.title) {
+      return -1;
+    }
+    if (a.title > b.title) {
+      return 1;
+    }
+  
+    // names must be equal
+    return 0;
+  }).sort((a,b) => a.year - b.year)
+ 
+
   return result
 }
 
@@ -56,7 +66,9 @@ function moviesAverageByCategory(array,genre) {
     }
   }))
   let result = filterArray.reduce((acc,b) => acc + b.score, 0)
-  return +((result/filterArray.length).toFixed(2))
+  result = result/filterArray.length
+  console.log(typeof result)
+  return +result.toFixed(2)
 }
 
 

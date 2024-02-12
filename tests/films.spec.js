@@ -312,7 +312,7 @@ describe('Function "moviesAverageByCategory"', () => {
         director: 'Frank Darabont',
         duration: '2h 22min',
         genre: ['Crime', 'Drama'],
-        score: 9
+        score: 9.7
       },
       {
         title: 'The Godfather',
@@ -320,7 +320,7 @@ describe('Function "moviesAverageByCategory"', () => {
         director: 'Francis Ford Coppola',
         duration: '2h 55min',
         genre: ['Crime', 'Drama'],
-        score: 9
+        score: 9.4
       },
       {
         title: 'The Godfather: Part II',
@@ -328,9 +328,9 @@ describe('Function "moviesAverageByCategory"', () => {
         director: 'Francis Ford Coppola',
         duration: '3h 22min',
         genre: ['Crime', 'Drama'],
-        score: 9
+        score: 9.6
       },
-    ], 'Drama')).toBe(9.00);
+    ], 'Drama')).toBe(9.57);
   });
 });
 

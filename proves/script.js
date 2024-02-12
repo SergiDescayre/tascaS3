@@ -2010,10 +2010,37 @@ const movies = [
       }
     }))
     let result = filterArray.reduce((acc,b) => acc + b.score, 0)
-    return +((result/filterArray.length).toFixed(2))
+    result = result/filterArray.length
+    console.log(typeof result)
+    return +result.toFixed(2)
   }
 
-console.log(moviesAverageByCategory(movies,"Thriller")) 
+console.log(moviesAverageByCategory([
+  {
+    title: 'The Shawshank Redemption',
+    year: 1994,
+    director: 'Frank Darabont',
+    duration: '2h 22min',
+    genre: ['Crime', 'Drama'],
+    score: 9.7
+  },
+  {
+    title: 'The Godfather',
+    year: 1972,
+    director: 'Francis Ford Coppola',
+    duration: '2h 55min',
+    genre: ['Crime', 'Drama'],
+    score: 9.4
+  },
+  {
+    title: 'The Godfather: Part II',
+    year: 1974,
+    director: 'Francis Ford Coppola',
+    duration: '3h 22min',
+    genre: ['Crime', 'Drama'],
+    score: 9.6
+  },
+], 'Drama'))
   
   function orderByYear(array) {
     let result = array.map(movie => {
@@ -2021,8 +2048,18 @@ console.log(moviesAverageByCategory(movies,"Thriller"))
             title : movie.title,
             year : movie.year
         }
-    }).sort((a,b) => a.title - b.title)
-    .sort((a,b) => a.year - b.year)
+    }).sort((a,b) => {
+      if (a.title < b.title) {
+        return -1;
+      }
+      if (a.title > b.title) {
+        return 1;
+      }
+    
+      // names must be equal
+      return 0;
+    }).sort((a,b) => a.year-b.year)
+   
 
     return result
   }
