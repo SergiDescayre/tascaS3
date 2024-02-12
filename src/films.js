@@ -42,14 +42,23 @@ function orderByYear(array) {
           year : movie.year
       }
   }).sort((a,b) => a.title - b.title)
-  .sort((a,b) => a.year -  b.year)
+  .sort((a,b) => a.year - b.year)
   return result
 }
 
-// Exercise 6: Calculate the average of the movies in a category
-function moviesAverageByCategory() {
 
+// Exercise 6: Calculate the average of the movies in a category
+function moviesAverageByCategory(array,genre) {
+  let filterArray = []
+  array.filter(movie => movie.genre.map(gen => {
+    if(gen.toLowerCase()===genre.toLowerCase()){
+      filterArray.push(movie)
+    }
+  }))
+  let result = filterArray.reduce((acc,b) => acc + b.score, 0)
+  return +((result/filterArray.length).toFixed(2))
 }
+
 
 // Exercise 7: Modify the duration of movies to minutes
 function hoursToMinutes() {

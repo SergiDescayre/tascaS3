@@ -2001,6 +2001,19 @@ const movies = [
       score: 8
     }
   ];
+
+  function moviesAverageByCategory(array,genre) {
+    let filterArray = []
+    array.filter(movie => movie.genre.map(gen => {
+      if(gen.toLowerCase()===genre.toLowerCase()){
+        filterArray.push(movie)
+      }
+    }))
+    let result = filterArray.reduce((acc,b) => acc + b.score, 0)
+    return +((result/filterArray.length).toFixed(2))
+  }
+
+console.log(moviesAverageByCategory(movies,"Thriller")) 
   
   function orderByYear(array) {
     let result = array.map(movie => {
@@ -2009,10 +2022,15 @@ const movies = [
             year : movie.year
         }
     }).sort((a,b) => a.title - b.title)
-    .sort((a,b) => a.year -  b.year)
+    .sort((a,b) => a.year - b.year)
 
     return result
   }
+  console.log(orderByYear([
+    { title: 'abc', year: 2002 },
+    { title: 'bac', year: 1982 },
+    { title: 'aab', year: 1982 }
+  ])) 
 
-  console.log(orderByYear(movies))
+  //console.log(orderByYear(movies))
   /* export default films; */
