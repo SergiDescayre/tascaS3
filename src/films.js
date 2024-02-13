@@ -22,14 +22,14 @@ function moviesAverageOfDirector(array, director) {
 
 // Exercise 4:  Alphabetic order by title 
 function orderAlphabetically(array) {
-  let result = []
-  array.map(film => film.title)
+  let result = array.map(film => film.title)
   .sort((a,b) => a.localeCompare(b))
   .map((film , index) => {
       if(index < 20){
-          result.push(film)
+          return film
       }
   })
+
   return result
 }
 
@@ -48,15 +48,13 @@ function orderByYear(array) {
 
 // Exercise 6: Calculate the average of the movies in a category
 function moviesAverageByCategory(array,genre) {
-  let filterArray = []
-  array.filter(movie => movie.genre.map(gen => {
+  let filterArray = array.filter(movie => movie.genre.map(gen => {
     if(gen.toLowerCase()===genre.toLowerCase()){
-      filterArray.push(movie)
+      return movie
     }
   }))
   let result = filterArray.reduce((acc,b) => acc + b.score, 0)
   result = result/filterArray.length
-  console.log(typeof result)
   return +result.toFixed(2)
 }
 
@@ -84,24 +82,24 @@ function hoursToMinutes(array) {
 }
 
 // Exercise 8: Get the best film of a year
-function bestFilmOfYear(array,year) {
-  let arrayScore = []
-  let highScore = 0
-  array.filter(movie => {
-    if(movie.year === year){
-     arrayScore.push(+movie.score)
-    }
-  })
-  highScore = Math.max(...arrayScore)
-  
-  let result = array.filter(movie =>{
-    if(movie.score === highScore && movie.year===year)
-    return{
-      movie
-    }
-  })
-  return result
-}
+  function bestFilmOfYear(array,year) {
+   
+    let highScore = 0
+    let arrayScore = array.map(movie => {
+      if(movie.year === year){
+       return +movie.score
+      }
+    })
+    highScore = Math.max(...arrayScore)
+    
+    let result = array.filter(movie =>{
+      if(movie.score === highScore && movie.year===year)
+      return{
+        movie
+      }
+    })
+    return result
+  }
 
 
 

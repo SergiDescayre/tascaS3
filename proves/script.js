@@ -2002,6 +2002,21 @@ const movies = [
     }
   ];
 
+  function orderAlphabetically(array) {
+
+    let result = array.filter(film => film.title)
+    .sort((a,b) => a.localeCompare(b))
+    .map((film , index) => {
+        if(index < 20){
+            return film
+        }
+    })
+  
+    return result
+  }
+
+  orderAlphabetically(movies)
+
   function bestFilmOfYear(array,year) {
     let arrayScore = []
     let highScore = 0
