@@ -40,19 +40,8 @@ function orderByYear(array) {
           title : movie.title,
           year : movie.year
       }
-  }).sort((a,b) => {
-    if (a.title < b.title) {
-      return -1;
-    }
-    if (a.title > b.title) {
-      return 1;
-    }
-  
-    // names must be equal
-    return 0;
-  }).sort((a,b) => a.year - b.year)
- 
-
+  }).sort((a,b) => a.title.localeCompare(b.title))
+  .sort((a,b) => a.year - b.year)
   return result
 }
 
