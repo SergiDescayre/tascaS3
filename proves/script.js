@@ -2002,72 +2002,51 @@ const movies = [
     }
   ];
 
-  function moviesAverageByCategory(array,genre) {
-    let filterArray = []
-    array.filter(movie => movie.genre.map(gen => {
-      if(gen.toLowerCase()===genre.toLowerCase()){
-        filterArray.push(movie)
+  function bestFilmOfYear(array,year) {
+    let arrayScore = []
+    let highScore = 0
+    array.filter(movie => {
+      if(movie.year === year){
+       arrayScore.push(+movie.score)
       }
-    }))
-    let result = filterArray.reduce((acc,b) => acc + b.score, 0)
-    result = result/filterArray.length
-    console.log(typeof result)
-    return +result.toFixed(2)
-  }
-
-console.log(moviesAverageByCategory([
-  {
-    title: 'The Shawshank Redemption',
-    year: 1994,
-    director: 'Frank Darabont',
-    duration: '2h 22min',
-    genre: ['Crime', 'Drama'],
-    score: 9.7
-  },
-  {
-    title: 'The Godfather',
-    year: 1972,
-    director: 'Francis Ford Coppola',
-    duration: '2h 55min',
-    genre: ['Crime', 'Drama'],
-    score: 9.4
-  },
-  {
-    title: 'The Godfather: Part II',
-    year: 1974,
-    director: 'Francis Ford Coppola',
-    duration: '3h 22min',
-    genre: ['Crime', 'Drama'],
-    score: 9.6
-  },
-], 'Drama'))
-  
-  function orderByYear(array) {
-    let result = array.map(movie => {
-       return  {
-            title : movie.title,
-            year : movie.year
-        }
-    }).sort((a,b) => {
-      if (a.title < b.title) {
-        return -1;
-      }
-      if (a.title > b.title) {
-        return 1;
-      }
+    })
+    highScore = Math.max(...arrayScore)
     
-      // names must be equal
-      return 0;
-    }).sort((a,b) => a.year-b.year)
-   
-
+    let result = array.filter(movie =>{
+      if(movie.score === highScore && movie.year===year)
+      return{
+        movie
+      }
+    })
     return result
   }
-  console.log(orderByYear([
-    { title: 'abc', year: 2002 },
-    { title: 'bac', year: 1982 },
-    { title: 'aab', year: 1982 }
-  ])) 
 
-  //console.log(orderByYear(movies))
-  /* export default films; */
+  console.log(bestFilmOfYear([
+    {
+      title: 'Film1',
+      year: 1957,
+      director: 'Stanley Kubrick',
+      duration: '1h 28min',
+      genre: ['Drama', 'War'],
+      score: 6
+    },
+    {
+      title: 'Film2',
+      year: 1957,
+      director: 'Stanley Kubrick',
+      duration: '1h 28min',
+      genre: ['Drama', 'War'],
+      score: 8.4
+    },
+    {
+      title: 'Film3',
+      year: 1957,
+      director: 'Stanley Kubrick',
+      duration: '1h 28min',
+      genre: ['Drama', 'War'],
+      score: 5
+    },
+  ],1957)) 
+
+
+

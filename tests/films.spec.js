@@ -305,32 +305,33 @@ describe('Function "moviesAverageByCategory"', () => {
     expect(moviesAverageByCategory(movies, 'Drama')).not.toBeNaN();
   });
   it(' should return the average score of movies selecting only the genre films. With 2 decimals! ', () => {
-    expect (moviesAverageByCategory([
-      {
-        title: 'The Shawshank Redemption',
-        year: 1994,
-        director: 'Frank Darabont',
-        duration: '2h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9.7
-      },
-      {
-        title: 'The Godfather',
-        year: 1972,
-        director: 'Francis Ford Coppola',
-        duration: '2h 55min',
-        genre: ['Crime', 'Drama'],
-        score: 9.4
-      },
-      {
-        title: 'The Godfather: Part II',
-        year: 1974,
-        director: 'Francis Ford Coppola',
-        duration: '3h 22min',
-        genre: ['Crime', 'Drama'],
-        score: 9.6
-      },
-    ], 'Drama')).toBe(9.57);
+    expect(
+      moviesAverageByCategory([
+        {
+          title: 'The Shawshank Redemption',
+          year: 1994,
+          director: 'Frank Darabont',
+          duration: '2h 22min',
+          genre: ['Crime', 'Drama'],
+          score: 9.7
+        },
+        {
+          title: 'The Godfather',
+          year: 1972,
+          director: 'Francis Ford Coppola',
+          duration: '2h 55min',
+          genre: ['Crime', 'Drama'],
+          score: 9.4
+        },
+        {
+          title: 'The Godfather: Part II',
+          year: 1974,
+          director: 'Francis Ford Coppola',
+          duration: '3h 22min',
+          genre: ['Crime', 'Drama'],
+          score: 9.6
+        },
+      ], 'Drama')).toBe(9.57);
   });
 });
 
