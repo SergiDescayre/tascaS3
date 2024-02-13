@@ -40,7 +40,11 @@ function orderByYear(array) {
           title : movie.title,
           year : movie.year
       }
-  }).sort((a,b) => a.title.localeCompare(b.title))
+  }).sort((a,b) => {
+    if(a.title < b.title ) return -1
+    if(a.title > b.title ) return 1
+    else return 0
+  })
   .sort((a,b) => a.year - b.year)
   return result
 }
@@ -70,14 +74,11 @@ function hoursToMinutes(array) {
       let minuteOneStr = minuteOne.toString()
       let minuteTwoStr = minuteTwo.toString()
       minutsPartTwo = +(minuteOneStr + minuteTwoStr)
-      console.log(typeof minutsPartTwo)
     }else{
       minutsPartTwo = +movie.duration.substring(3,4)
     }
-    console.log(minutsPartTwo)
     return {...movie ,duration : (movie.duration.slice(0,1)*60)+minutsPartTwo}
   })
-  console.log(result)
   return result
 }
 
@@ -92,12 +93,7 @@ function hoursToMinutes(array) {
     })
     highScore = Math.max(...arrayScore)
     
-    let result = array.filter(movie =>{
-      if(movie.score === highScore && movie.year===year)
-      return{
-        movie
-      }
-    })
+    let result = array.filter(movie => movie.score === highScore && movie.year===year)
     return result
   }
 
